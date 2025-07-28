@@ -15,5 +15,5 @@ public interface OrderItemPersistenceOutboundPort {
 
     PageContent<OrderItem> findAll(UUID orderId, FilterOrderItemCommand filterOrderItemCommand, Integer pageSize, Integer pageNumber);
 
-    OrderItem update(UUID orderId, UUID orderItemId, OrderItem orderItem);
+    OrderItem update(OrderItem orderItem);
 }

@@ -74,7 +74,7 @@ public class OrderItemOutboundPortImpl implements OrderItemOutboundPort {
     }
 
     @Override
-    public OrderItem update(UUID orderId, UUID orderItemId, OrderItem orderItem) {
+    public OrderItem update(OrderItem orderItem) {
         OrderItemEntity itemEntity = orderItemRepository.save(Objects.requireNonNull(conversionService.convert(orderItem, OrderItemEntity.class), "Converted Order Item entity cannot be null"));
         return conversionService.convert(itemEntity, OrderItem.class);
     }

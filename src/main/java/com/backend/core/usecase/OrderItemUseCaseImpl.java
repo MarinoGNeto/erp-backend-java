@@ -12,6 +12,8 @@ import com.backend.core.usecase.dto.OrderItemCommand;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class OrderItemUseCaseImpl implements OrderItemInboundPort {
@@ -62,13 +64,15 @@ public class OrderItemUseCaseImpl implements OrderItemInboundPort {
     @Transactional
     public OrderItem update(OrderItemCommand command, UUID orderId, UUID orderItemId) {
         OrderItem item = findOrderItemByIdAndOrderId(orderId, orderItemId);
+        Order order = findOrderById(orderId);
         Product product = findActiveProductById(command.productId());
 
         item.setProduct(product);
+        item.setOrder(order);
         item.setQuantity(command.quantity());
         item.setUnitPrice(product.getPrice());
 
-        return orderItemOutboundPort.update(orderId, orderItemId, item);
+        return orderItemOutboundPort.update(item);
     }
 
     @Override
@@ -76,11 +80,13 @@ public class OrderItemUseCaseImpl implements OrderItemInboundPort {
     public void deleteById(UUID orderId, UUID orderItemId) {
         Order order = findOrderById(orderId);
 
-        boolean removed = order.getItems().removeIf(item -> item.getId().equals(orderItemId));
+        List<OrderItem> mutableItems = new ArrayList<>(order.getItems());
+        boolean removed = mutableItems.removeIf(item -> item.getId().equals(orderItemId));
         if (!removed) {
             throw new EntityNotFoundException(String.format(ORDER_ITEM_NOT_FOUND, orderItemId));
         }
 
+        order.setItems(mutableItems);
         orderOutboundPort.update(order);
     }
 
