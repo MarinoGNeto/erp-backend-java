@@ -9,6 +9,15 @@
 
 ---
 
+## Generate QueryDSL classes
+
+Before building or running the application, generate the QueryDSL classes:
+```bash
+mvn compile
+```
+These classes will be generated under `target/generated-sources`. Make sure your IDE marks this folder as a **Generated Sources**
+
+
 ## How to run
 
 ### 1. start the database
