@@ -38,13 +38,13 @@ class OrderItemWebControllerImplTest {
 
     @BeforeEach
     void setup() throws Exception {
-        productId = createProduct("Produto X", BigDecimal.valueOf(100), ProductType.PRODUCT);
+        productId = createProduct("Product X", BigDecimal.valueOf(100), ProductType.PRODUCT);
         orderId = createOrder(productId);
     }
 
     @Test
-    @DisplayName("Deve criar um OrderItem com sucesso")
-    void testCreateOrderItem() throws Exception {
+    @DisplayName("Should be able to create Order Item successfully")
+    void shouldBeAbleToCreateOrderItem() throws Exception {
         OrderItemRequest request = new OrderItemRequest(UUID.fromString(productId), 3);
 
         mockMvc.perform(post("/api/orders/{orderId}/items", orderId)
@@ -56,8 +56,8 @@ class OrderItemWebControllerImplTest {
     }
 
     @Test
-    @DisplayName("Deve buscar um OrderItem por ID")
-    void testFindOrderItemById() throws Exception {
+    @DisplayName("Should be able to find OrderItem by ID")
+    void shouldBeAbleToFindOrderItemById() throws Exception {
         String itemId = createOrderItem(orderId, productId, 2);
 
         mockMvc.perform(get("/api/orders/{orderId}/items/{itemId}", orderId, itemId))

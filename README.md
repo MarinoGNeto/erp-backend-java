@@ -1,31 +1,31 @@
-# ERP Backend Java – Documentação
+# ERP Backend Java – Documentation
 
-## Requisitos
+## Requirements
 - Java 17+
 - Maven 3.8+
-- Docker e Docker Compose
-- PostgreSQL 15 (já incluso via docker-compose)
-- IDE (recomendado: IntelliJ IDEA)
+- Docker and Docker Compose
+- PostgreSQL 15 (already included via docker-compose)
+- IDE (recommended: IntelliJ IDEA)
 
 ---
 
-## Como executar o projeto
+## How to run
 
-### 1. Suba o banco de dados
+### 1. start the database
 ```bash
 docker-compose up -d
 ```
 
-Isso irá subir um container PostgreSQL em `localhost:5432`, com:
+This will start a PostgreSQL container on `localhost:5432`, with:
 
-- Banco: `backend`  
-- Usuário: `postgres`  
-- Senha: `postgres`  
+- Database: `backend`  
+- User: `postgres`  
+- Password: `postgres`  
 
 ---
 
-### 2. Execute a aplicação
-Você pode rodar pela IDE (classe principal `Main`) ou via Maven:
+### 2. Run the application
+You can run it from the IDE (main class `Main`) or via Maven:
 
 ```bash
 mvn spring-boot:run
@@ -33,45 +33,42 @@ mvn spring-boot:run
 
 ---
 
-## Documentação da API (Swagger)
+## API Documentation (Swagger)
 
-Após a aplicação estar no ar, acesse:
+Once the application is running, access:
 
 ```
 http://localhost:8080/swagger-ui.html
 ```
 
-ou
+or
 
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
 
-Essa interface contém todos os endpoints dos módulos de:
-- **Produtos**
-- **Pedidos**
-- **Itens do Pedido**
+This interface contains all endpoints for the following modules:
+- **Products**
+- **Orders**
+- **Order Items**
 
 ---
 
-## Testes automatizados
+## Automated Tests
 
-Os testes automatizados já estão implementados para os principais fluxos:
+Automated tests are already implemented for the main flows.
 
-- Criação, edição, busca e exclusão de produtos
-- Criação, atualização, consulta e remoção de pedidos e itens
-
-Para rodar os testes:
+To run the tests:
 
 ```bash
 mvn test
 ```
 
-Os testes utilizam `MockMvc`, `JUnit 5`, `AssertJ` e `ObjectMapper` para validação de JSON.
+Tests use `MockMvc`, `JUnit 5`, `AssertJ` and `ObjectMapper` for JSON validation.
 
 ---
 
-## Estrutura de pastas
+## Project Structure
 
 ```
 ├── adapter
@@ -96,7 +93,7 @@ Os testes utilizam `MockMvc`, `JUnit 5`, `AssertJ` e `ObjectMapper` para valida�
 
 ---
 
-## Tecnologias utilizadas
+## Technologies used
 
 - Spring Boot 3.5
 - Spring Web, JPA e Validation
