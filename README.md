@@ -42,6 +42,18 @@ mvn spring-boot:run
 
 ---
 
+## Testing via Postman
+
+You can test all API endpoints by importing the provided Postman collection: [`backend-erp.postman_collection.json`](backend-erp.postman_collection.json)
+
+In Postman:
+1. Click on "Import" > "Upload Files"
+2. Select the collection file
+3. The url is default http://localhost:8080, you can change it if it's different in your environment
+4. Run the requests!
+
+---
+
 ## API Documentation (Swagger)
 
 Once the application is running, access:
